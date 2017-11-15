@@ -1,6 +1,6 @@
 {
   "name": "expressjs-react-blog-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "backend support for express-react-blog",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,8 @@
   },
   "devDependencies": {
     "debug": "^3.1.0",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "standard-version": "^4.2.0"
   },
   "config": {
     "commitizen": {
