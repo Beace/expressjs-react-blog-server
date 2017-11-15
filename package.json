@@ -4,7 +4,10 @@
   "description": "backend support for express-react-blog",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon ./setup/www"
+    "start": "cross-env NODE_ENV=development nodemon ./setup/www",
+    "release": "standard-version -- --dry-run",
+    "generate": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": "git@github.com:BeAce/expressjs-react-blog-server.git",
   "author": "beace",
@@ -19,11 +22,12 @@
     "mongoose": "^4.13.2"
   },
   "devDependencies": {
-    "colors": "^1.1.2",
-    "cross-env": "^5.1.1",
-    "cz-conventional-changelog": "^2.1.0",
     "debug": "^3.1.0",
-    "morgan": "^1.9.0",
-    "nodemon": "^1.12.1"
+    "morgan": "^1.9.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
