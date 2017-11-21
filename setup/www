@@ -14,7 +14,8 @@ require("babel-polyfill");
 const app = require('../app');
 const debug = require('debug')('express-react:server');
 const http = require('http');
-const colors = require('colors');
+const chalk = require('chalk');
+const log = console.log;
 
 /**
  * Get port from environment and store in Express.
@@ -89,7 +90,8 @@ function onError(error) {
 
 function onListening() {
   const address = server.address();
-  const bind = typeof address === 'string' ? `pipe ${address}` : `port ${address.port}`;
+  const bind = typeof address === 'string' ? `pipe ${address}` : `port: ${address.port}`;
   debug(`Listening on ${bind}`);
-  console.log(colors.green(`\n[node-express:server] Listening on ${bind.yellow}\n`));
+  log(chalk.blue.bold('\n========================running===================================\n'));
+  log(chalk.green('\n √ [server]') + ' Listening on ' + chalk.red(`${bind}!`));
 }

@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
-import colors from 'colors';
+import chalk from 'chalk';
+const log = console.log;
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/article', { useMongoClient: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log(colors.green('[db] connected width collection articles successed')));
+db.once('open', () => log(chalk.green(' √ [mongo-db] connected with collection articles successed')));

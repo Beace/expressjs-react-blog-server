@@ -1,32 +1,30 @@
 import mongoose from 'mongoose';
-
-const ArticlesSchema = mongoose.Schema(
+const Schema = mongoose.Schema;
+const filter = { __v: 0 };
+const articleSchema = new Schema(
   {
     abstract: String,
     title: String,
     content: String,
     date: Date,
     author: String,
+     __v: { type: Number, select: false }
   },
   { collection: 'articles' }
 );
 
-// const Autor = mongoose.Schema({
-//   author: String,
-// });
-
-ArticlesSchema.statics.findArticles = function() {
+articleSchema.statics.findArticles = function() {
   return this.find().exec();
 };
 
-ArticlesSchema.statics.findArticleById = function(id) {
-  return this.findById(id).exec();
+articleSchema.statics.findArticleById = function(id) {
+  return this.findById(id, filter).exec();
 };
 
-ArticlesSchema.statics.findArticlesByAuthor = function(author) {
+articleSchema.statics.findArticlesByAuthor = function(author) {
   return this.find({ author }).exec();
 };
 
-const ArticlesModal = mongoose.model('ArticlesModal', ArticlesSchema);
+const ArticlesModal = mongoose.model('ArticlesModal', articleSchema);
 
 export default ArticlesModal;

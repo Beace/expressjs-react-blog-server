@@ -1,7 +1,8 @@
 import marked from 'marked';
 import highlightjs from 'highlight.js';
 import ArticlesModal from './models/articleSchema';
-const { wrap: async } = require('co');
+// const { wrap: async } = require('co');
+import { wrap as async } from 'co';
 
 /* eslint-disable no-console */
 
@@ -25,6 +26,25 @@ const routes = app => {
       next();
     }
   });
+
+
+  app.get('/api/posts', (req, res) => {
+    const { start, count = 5 } = req.query;
+    if (!start) {
+      res.json({
+        msg: 'the start field is required',
+        code: -1,
+      });
+    } else {
+      sql.query(`SELECT * FROM fk_post LIMIT ${count} OFFSET ${start}`, function (error, results, fields) {
+        if (error) errorHandler(error, res);
+        res.json({
+          data: results,
+          code: 0
+        });
+      });
+    }
+  })
 
   /**
    * Find all articles
