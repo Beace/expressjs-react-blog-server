@@ -21,8 +21,9 @@ articleSchema.statics.findArticleById = function(id) {
   return this.findById(id, filter).exec();
 };
 
-articleSchema.statics.findArticlesByAuthor = function(author) {
-  return this.find({ author }).exec();
+
+articleSchema.statics.saveOne = function(data) {
+  return this.save(data).exec();
 };
 
 const ArticlesModal = mongoose.model('ArticlesModal', articleSchema);
