@@ -117,31 +117,31 @@ const routes = app => {
 
   app.post('/api/articles', (req, res) => {
     const article = new ArticlesModal(req.query);
-    // const count = 15;
-    // const start = 54;
-    // sql.query(`SELECT * FROM fk_post LIMIT ${count} OFFSET ${start}`, function (error, results, fields) {
-    //
-    //   if (error) errorHandler(error, res);
-    //
-    //   for (let i = 0; i < results.length; i++) {
-    //     const a = new ArticlesModal({
-    //       abstract: results[i].title,
-    //       title: results[i].title,
-    //       content: results[i].markdown_content,
-    //       date: results[i].update_time,
-    //     });
-    //     a.save().then(data => {
-    //       console.log(data);
-    //     });
-    //   }
-    article.save().then(data => {
-      res.json({
-        code: 0,
-        data,
-      })
-    }).catch(error => errorHandler(err, res));
+    const count = 1;
+    const start = 62;
+    sql.query(`SELECT * FROM fk_post LIMIT ${count} OFFSET ${start}`, function (error, results, fields) {
+
+      if (error) errorHandler(error, res);
+
+      for (let i = 0; i < results.length; i++) {
+        const a = new ArticlesModal({
+          abstract: results[i].title,
+          title: results[i].title,
+          content: results[i].markdown_content,
+          date: results[i].update_time,
+        });
+        a.save().then(data => {
+          console.log(data);
+        });
+      }
+      article.save().then(data => {
+        res.json({
+          code: 0,
+          data,
+        })
+      }).catch(error => errorHandler(err, res));
+    });
   });
-  // });
 };
 
 export default routes;

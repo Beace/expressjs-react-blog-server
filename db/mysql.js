@@ -17,13 +17,3 @@ connect.connect(function(err) {
 
   log(chalk.green(' √ [mysql-db] connected with database be_posts successed'));
 });
-
-// // connect.query('SELECT * from fk_post', function (error, results, fields) {
-// //   if (error) {
-// //     console.log(error);
-// //     throw error;
-// //   }
-// //   console.log('The solution is: ', results);
-// // });
-//
-// connect.end();
